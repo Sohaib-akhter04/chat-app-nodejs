@@ -50,9 +50,17 @@ body{
      border-radius: 6px;
      height:34px;
 }
+#heading{
+    text-align: center;
+}
 .btn{
     cursor: pointer;
     border:2px solid black;
     border-radius: 6px;
     height:34px;
+}
+.center {
+    margin: 0 auto;
+    display: block;
+    clear: both;
 }

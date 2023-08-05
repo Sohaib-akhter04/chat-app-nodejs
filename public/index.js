@@ -22,7 +22,7 @@ const append=(message,position)=>{
 
 socket.emit('new-user-joined',name);
 socket.on('user-joined',(name)=>{
-    append(`${name} has joined the chat`,'left');
+    append(`${name} has joined the chat`,'center');
 })
 
 form.addEventListener('submit',(event)=>{
@@ -36,7 +36,7 @@ socket.on('receive',(data)=>{
     append(`${data.name}:${data.message}`,'right');
 })
 socket.on('leave',name=>{
-    append(`${name} has left the chat`,'left');
+    append(`${name} has left the chat`,'center');
 })
 
 
