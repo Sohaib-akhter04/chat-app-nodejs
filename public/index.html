@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- <script defer src="https://localhost:8000/socket.io/socket.io.js"></script> -->
+    <script   defer src="/socket.io/socket.io.js"></script>
+     <script  defer src="index.js"></script>
+    
+    
+    
+    
 </head>
 <body>
-    <style>
-        
-    </style>
     <!-- <nav class="">
         <img class="logo" src="./public/logo.jpeg" alt="" >
     </nav> -->
-
     <div class="container">
         <div class="message right">Harry:Hey how are you</div>
         <div class="message left">Sohaib:hi how are you</div>
@@ -21,13 +24,15 @@
 
     <div class="send">
         <form  action="#" id="send-container">
-            <input type="text" name="messageInp" class="messageInp">
+            <input type="text" name="messageInp" class="messageInp" id="messageInp">
             <button type="submit" class="btn">Send</button>
         </form> 
     </div>
-    <script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io();
-</script>
+    <!-- <script src="/socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+     -->
+    
+    
+    
 </body>
 </html>

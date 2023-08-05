@@ -10,10 +10,22 @@ app.use(express.static('public'));
 app.get('/', (req,res)=>{
     res.sendFile(__dirname + '/index.html');
 })
+const users={}
+var i=0;
 io.on('connection',(socket)=>{
-    console.log('a user connected');
+    i++;
+    console.log(`${i}: user connected to server `);
+    socket.on('new-user-joined',(name)=>{
+        console.log(`${name} joined`);
+        users[socket.id]=name;
+        socket.broadcast.emit('user-joined',name);
+    })
+    socket.on('send',mesage=>{
+        socket.broadcast.emit('receive',{message:message,name:users[socket.id]});
+    })
 })
 
-server.listen(3000,()=>{
+
+server.listen(5000,()=>{
     console.log('listening on port 3000');
 })
