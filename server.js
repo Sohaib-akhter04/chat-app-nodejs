@@ -6,11 +6,12 @@ const {Server} = require('socket.io');
 const io=new Server(server);
 
 app.use(express.static('public'));
+const users={}
 
 app.get('/', (req,res)=>{
     res.sendFile(__dirname + '/index.html');
 })
-const users={}
+
 var i=0;
 io.on('connection',(socket)=>{
     i++;
@@ -20,12 +21,16 @@ io.on('connection',(socket)=>{
         users[socket.id]=name;
         socket.broadcast.emit('user-joined',name);
     })
-    socket.on('send',mesage=>{
+    socket.on('send',message=>{
         socket.broadcast.emit('receive',{message:message,name:users[socket.id]});
+    })
+    socket.on('disconnect',message=>{
+        socket.broadcast.emit('leave',users[socket.id])
+        delete users[socket.id];
     })
 })
 
 
-server.listen(5000,()=>{
-    console.log('listening on port 3000');
+server.listen(3000,()=>{
+    console.log('listening on port 5000');
 })

@@ -29,12 +29,14 @@ form.addEventListener('submit',(event)=>{
     event.preventDefault();
     const message=messageinput.value
     socket.emit('send',message);
+    append(`You:${message}`,'left');
     messageinput.value="";
 })
 socket.on('receive',(data)=>{
-    append(`${data.message}:${data.user}`,'left');
-    append(`You:${message}`,'right')
-    
+    append(`${data.name}:${data.message}`,'right');
+})
+socket.on('leave',name=>{
+    append(`${name} has left the chat`,'left');
 })
 
 
